@@ -8,8 +8,15 @@ sudo apt update && sudo apt upgrade -y && sudo apt -y autoremove
 sudo apt -y install unzip vim neovim git curl
 
 # Git setup
-git config --global user.name "Eugene Triguba" && \
+git config --global user.name "Eugene Triguba"
 git config --global user.email "eugenetriguba@gmail.com"
+
+# Bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)"
+mkdir ~/.dotfiles
+cp ./dotfiles/aliases.sh ~/.dotfiles
+echo "source ~/.dotfiles/aliases.sh" >> ~/.bashrc
+source ~/.bashrc
 
 # Python Setup
 sudo apt -y install python3.8 python3-pip python-pip
