@@ -24,7 +24,6 @@ brew "composer"
 brew "mysql", restart_service: true
 brew "nginx", restart_service: true
 brew "node"
-brew "php", restart_service: true
 brew "pipenv"
 brew "postgresql", restart_service: true
 brew "python"
@@ -33,7 +32,6 @@ brew "redis", restart_service: true
 cask "1password"
 cask "alfred"
 cask "bartender"
-cask "brave-browser"
 cask "dash"
 cask "docker"
 cask "dropbox"
