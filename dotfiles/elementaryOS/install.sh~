@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# @file elementaryOS Setup
+# @brief A bootstrap script for getting up and running on elementaryOS
+
+sudo add-apt-repository ppa:longsleep/golang-backports
+
+sudo apt update && sudo apt upgrade -y
+
+sudo apt -y install unzip vim neovim git python3.8 python3-pip curl
+
+# Install Poetry (Python dependency management)
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
+source $HOME/.poetry/env
