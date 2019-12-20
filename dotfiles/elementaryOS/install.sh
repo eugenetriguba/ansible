@@ -7,6 +7,10 @@
 sudo apt update && sudo apt upgrade -y && sudo apt -y autoremove
 sudo apt -y install unzip vim neovim git curl
 
+# Git setup
+git config --global user.name "Eugene Triguba" && \
+git config --global user.email "eugenetriguba@gmail.com"
+
 # Python Setup
 sudo apt -y install python3.8 python3-pip python-pip
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3
