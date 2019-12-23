@@ -91,6 +91,13 @@ else
     apt_without_output install python3-pip
 fi
 
+if which rst2man >/dev/null 2>&1; then
+    msg_done "python docutils"
+else
+    msg_run "Installing python docutils"
+    apt_without_output install python-docutils
+fi
+
 if [[ -d ~/.poetry ]]; then
     msg_done "poetry"
 else
@@ -142,5 +149,5 @@ msg_config "Configured git"
 dconf write /org/gtk/settings/file-chooser/show-hidden true
 msg_config "Set desktop to show hidden files"
 
-msg_done "All ready to go!"
+msg_done "All ready to go!\n"
 
