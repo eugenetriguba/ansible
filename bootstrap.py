@@ -9,8 +9,10 @@ def main():
 
     if system.rfind('darwin') != -1:
         subprocess.call(['./dotfiles/macOS/install.sh'])
-    elif system.rfind('elementary') != -1 or system.rfind('ubuntu') != -1:
+    elif system.rfind('elementary') != -1:
         subprocess.call(['./dotfiles/elementaryOS/install.sh'])
+    elif system.rfind('ubuntu') != -1:
+        subprocess.call(['./dotfiles/ubuntu/install.sh'])
     else:
         print(system + " is not supported.")
 
