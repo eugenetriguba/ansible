@@ -97,6 +97,13 @@ else
     apt_without_output install software-properties-common
 fi
 
+if which npm >/dev/null 2>&1; then
+    msg_done "npm"
+else
+    msg_run "Installing npm"
+    apt_without_output install npm
+fi
+
 if which python3.8 >/dev/null 2>&1; then
     msg_done "python 3.8"
 else
