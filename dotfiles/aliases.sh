@@ -1,9 +1,6 @@
 # Python
 alias py="python3"
 
-# Vim
-alias vim="nvim"
-
 # Git
 alias gs="git status"
 alias gc="git commit"
@@ -19,6 +16,6 @@ alias gcb='git checkout -b'
 alias gv='git log --graph --decorate --oneline'
 
 # General
-alias l="ls -al --color='always'"
-alias open="xdg-open"
-alias o="xdg-open ."
+alias l="ls -alG"
+alias o="open ."
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"

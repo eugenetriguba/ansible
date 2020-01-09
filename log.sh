@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 function msg {
 	echo -e "\033[0;37m$1\033[0m";
 }
