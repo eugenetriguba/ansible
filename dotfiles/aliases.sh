@@ -17,5 +17,4 @@ alias gv='git log --graph --decorate --oneline'
 
 # General
 alias l="ls -alG"
-alias o="open ."
-alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias o="xdg-open ."

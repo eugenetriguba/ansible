@@ -3,30 +3,8 @@
 # @file Ubuntu Setup
 # @brief A bootstrap script for getting up and running on Ubuntu
 
-DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-source "$DIR/../lib/log.sh"
-
-apt_without_output() {
-    sudo apt $1 -y $2 >/dev/null 2>&1
-}
-
-snap_install_without_output() {
-    sudo snap install $1 >/dev/null 2>&1
-}
-
-msg '\n'
-
-show_art "     .::            .::      .::    .::                 "
-show_art "     .::            .::    .:    .: .::                 "
-show_art "     .::   .::    .:.: .:.:.: .:    .::   .::     .:::: "
-show_art " .:: .:: .::  .::   .::    .::  .:: .:: .:   .:: .::    "
-show_art ".:   .::.::    .::  .::    .::  .:: .::.::::: .::  .::: "
-show_art ".:   .:: .::  .::   .::    .::  .:: .::.:            .::"
-show_art ".:: .::   .::       .::   .::  .::.:::  .::::   .:: .:: "
-
-msg '\n'
-msg_done 'Initializing setup.'
-msg '\n'
+source base.sh
+source ubuntu/helpers.sh
 
 msg_run "Updating software with apt.."
 apt_without_output update
@@ -144,37 +122,30 @@ else
     mkdir -p ~/Code/go/src >/dev/null 2>&1
 fi
 
-# Oh my bash
-if [[ -d ~/.oh-my-bash ]]; then
-    msg_done "oh-my-bash"
+# Oh my zsh
+if [[ -d ~/.oh-my-zsh ]]; then
+    msg_done "oh-my-zsh"
 else
-    msg_run "Installing oh my bash"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh)" >/dev/null 2>&1
+    msg_run "Installing oh my zsh"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 fi
 
-msg_run "Removing previous .bashrc"
-rm -rf ~/.bashrc
-rm -rf ~/.bashrc.pre-oh-my-bash
+msg_run "Removing previous .zshrc and any bash files"
+rm -rf ~/.zshrc
+rm -rf ~/.zshrc.pre-oh-my-zsh
+rm -rf ~/.bash*
 
 msg_run "Creating ~/.dotfiles"
 mkdir ~/.dotfiles >/dev/null 2>&1
-cp ./dotfiles/aliases.sh ~/.dotfiles >/dev/null 2>&1
-cp ./dotfiles/paths.sh ~/.dotfiles >/dev/null 2>&1
-cp ./dotfiles/.bashrc ~/.dotfiles/.bashrc >/dev/null 2>&1
-cp ./dotfiles/oh-my-bash.sh ~/.dotfiles/oh-my-bash.sh >/dev/null 2>&1
+cp ./dotfiles/* ~/.dotfiles/ >/dev/null 2>&1
 
-msg_run "Symbolic linking ~/.dotfiles/.bashrc to ~/.bashrc"
-ln -s ~/.dotfiles/.bashrc ~/.bashrc >/dev/null 2>&1
+msg_run "Symbolic linking ~/.dotfiles/.zshrc to ~/.zshrc"
+ln -s ~/.dotfiles/.zshrc ~/.zshrc >/dev/null 2>&1
+source ~/.zshrc
 
-source ~/.bashrc
-
-git config --global user.name "Eugene Triguba"
-git config --global user.email "eugenetriguba@gmail.com"
-git config --global core.editor "vim"
+rm -rf ~/.gitconfig
+ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
 msg_config "Configured git"
-
-dconf write /org/gtk/settings/file-chooser/show-hidden true
-msg_config "Set desktop to show hidden files"
 
 msg_done "All ready to go!\n"
 
