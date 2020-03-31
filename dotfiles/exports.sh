@@ -6,3 +6,8 @@ export PATH=$PATH:$GOROOT/bin
 
 # Python Poetry
 export PATH="$HOME/.poetry/bin:$PATH"
+
+# Pyenv
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"

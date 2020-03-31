@@ -6,8 +6,10 @@
 
 # Unofficial strict mode
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
-set -euo pipefail
-IFS=$'\n\t'
+# set -euo pipefail
+# IFS=$'\n\t'
+# disabled because of oh my zsh shell script
+# oh-my-zsh.sh: line 3: ZSH_CACHE_DIR: unbound variable 
 
 source base.sh
 source helpers.sh
@@ -82,6 +84,17 @@ for i in "${!snap_packages[@]}"; do
     fi
 done
 
+if [[ -d ~/.dotfiles ]]; then
+    msg_done "~/.dotfiles present"
+else
+    msg_run "Creating ~/.dotfiles, moving files in, and creating symlinks"
+    mkdir -p ~/.dotfiles >/dev/null 2>&1
+    cp -rT ./dotfiles/ ~/.dotfiles/ >/dev/null 2>&1
+
+    rm -rf ~/.gitconfig
+    ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
+fi
+
 
 if echo $SHELL | grep "zsh" >/dev/null 2>&1; then
     msg_done "zsh is the current shell"
@@ -105,30 +118,31 @@ else
     source $HOME/.poetry/env
 fi
 
-if [[ -d ~/.oh-my-zsh ]]; then
+if command -v pyenv >/dev/null 2>&1; then
+    msg_done "pyenv"
+else
+    msg_run "Installing pyenv"
+    curl https://pyenv.run >/dev/null 2>&1 | bash >/dev/null 2>&1
+fi
+
+if [[ -d ~/.dotfiles/.oh-my-zsh ]]; then
     msg_done "oh-my-zsh"
 else
     msg_run "Installing oh my zsh"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    msg_run "Removing previous .zshrc and any bash files"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended >/dev/null 2>&1
     rm -rf ~/.zshrc
     rm -rf ~/.zshrc.pre-oh-my-zsh
     rm -rf ~/.bash*
+    mv ~/.oh-my-zsh ~/.dotfiles
+    ln -s ~/.dotfiles/.zshrc ~/.zshrc >/dev/null 2>&1 
+
+    # https://stackoverflow.com/questions/18620153/find-matching-text-and-replace-next-line
+    # Change next line in prompt_dir() to only show current directory
+    # $CURRENT_FG is being interpretted by the shell so this isn't working currently.
+    # sed "/prompt_dir\(\)/{n;s/.*/  prompt_segment blue $CURRENT_FG '%c'/}" ~/.dotfiles/.oh-my-zsh/themes/agnoster.zsh-theme >/dev/null 2>&1
+
+    source ~/.zshrc
 fi
 
-msg_run "Creating ~/.dotfiles"
-rm -rf ~/.dotfiles
-mkdir -p ~/.dotfiles >/dev/null 2>&1
-cp -rT ./dotfiles/ ~/.dotfiles/ >/dev/null 2>&1
-mv ~/.oh-my-zsh ~/.dotfiles
-
-msg_run "Symbolic linking ~/.dotfiles/.zshrc to ~/.zshrc"
-ln -s ~/.dotfiles/.zshrc ~/.zshrc >/dev/null 2>&1
-source ~/.zshrc
-
-rm -rf ~/.gitconfig
-ln -s ~/.dotfiles/.gitconfig ~/.gitconfig
-msg_config "Configured git"
-
-msg_done "All ready to go!\n"
+msg_done "All ready to go! You may want to log out and back in.\n"
 
