@@ -21,10 +21,8 @@ def main():
     
     system_name = platform.platform().lower()
 
-    if 'darwin' in system_name:
-        subprocess.call(['./macOS/install.sh'])
-    elif 'ubuntu' in system_name or 'elementary' in system_name:
-        subprocess.call(['./ubuntu/install.sh'])
+    if 'ubuntu' in system_name or 'elementary' in system_name:
+        subprocess.call(['./install.sh'])
     else:
         print(system_name + " is not supported.")
 

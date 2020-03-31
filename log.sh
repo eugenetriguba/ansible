@@ -29,7 +29,7 @@ function msg_config {
 }
 
 function msg_run {
-	echo -e "➜\033[1;35m $1  $2\033[0m";
+	echo -e "➜\033[1;35m $1 \033[0m";
 }
 
 function msg_done {
