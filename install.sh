@@ -39,6 +39,9 @@ apt_packages["pip3"]="python3-pip"
 apt_packages["rst2man"]="python-docutils"
 apt_packages["zsh"]="zsh"
 apt_packages["go"]="golang-go"
+apt_packages["tmux"]="tmux"
+apt_packages["i3"]="i3"
+apt_packages["i3blocks"]="i3blocks"
 
 # font name to search => install name
 declare -A apt_fonts
@@ -141,7 +144,7 @@ else
     # $CURRENT_FG is being interpretted by the shell so this isn't working currently.
     # sed "/prompt_dir\(\)/{n;s/.*/  prompt_segment blue $CURRENT_FG '%c'/}" ~/.dotfiles/.oh-my-zsh/themes/agnoster.zsh-theme >/dev/null 2>&1
 
-    source ~/.zshrc
+    source ~/.zshrc 
 fi
 
 msg_done "All ready to go! You may want to log out and back in.\n"

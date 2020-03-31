@@ -2,7 +2,7 @@
 
 ![Preview](/docs/preview.png)
 
-Personal dotfiles to get me quick started on various operating systems I use.
+Personal dotfiles to get me up and running on xubuntu.
 
 ## Getting Started
 
