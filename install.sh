@@ -2,7 +2,7 @@
 #
 # @file Ubuntu Setup
 # @brief A bootstrap script for getting up and running on Ubuntu.
-#        Instead to be run using bootstrap.py
+#        Intended to be run using bootstrap.py
 
 # Unofficial strict mode
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
@@ -30,6 +30,7 @@ declare -A apt_packages
 apt_packages["vim"]="vim"
 apt_packages["nvim"]="neovim"
 apt_packages["curl"]="curl"
+apt_packages["wget"]="wget"
 apt_packages["git"]="git"
 apt_packages["unzip"]="unzip"
 apt_packages["make"]="build-essential"
@@ -40,8 +41,35 @@ apt_packages["rst2man"]="python-docutils"
 apt_packages["zsh"]="zsh"
 apt_packages["go"]="golang-go"
 apt_packages["tmux"]="tmux"
+apt_packages["git"]="git"
+
+# i3
 apt_packages["i3"]="i3"
 apt_packages["i3blocks"]="i3blocks"
+apt_packages["compton"]="compton" 
+apt_packages["hsetroot"]="hsetroot" 
+apt_packages["rxvt-unicode"]="rxvt-unicode"
+apt_packages["xsel"]="xsel"
+apt_packages["rofi"]="rofi"
+apt_packages["xsettingsd"]="xsettingsd"
+apt_packages["lxappearance"]="lxappearance"
+apt_packages["scrot"]="scrot"
+apt_packages["viewnior"]="viewnior"
+
+# Pyenv deps
+apt_packages["libssl-dev"]="libssl-dev"
+apt_packages["zlib1g-dev"]="zlib1g-dev"
+apt_packages["libbz2-dev"]="libbz2-dev"
+apt_packages["libreadline-dev"]="libreadline-dev"
+apt_packages["libsqlite3-dev"]="libsqlite3-dev"
+apt_packages["llvm"]="llvm"
+apt_packages["libncurses5-dev"]="libncurses5-dev"
+apt_packages["libncursesw5-dev"]="libncursesw5-dev"
+apt_packages["xz-utils"]="xz-utils"
+apt_packages["tk-dev"]="tk-dev"
+apt_packages["libffi-dev"]="libffi-dev"
+apt_packages["liblzma-dev"]="liblzma-dev"
+apt_packages["python-openssl"]="python-openssl"
 
 # font name to search => install name
 declare -A apt_fonts
