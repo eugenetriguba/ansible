@@ -1,6 +1,6 @@
 # Dotfiles
 
-![Preview](/docs/preview.png)
+![Preview](/preview.png)
 
 Personal dotfiles to get me up and running on various operating systems.
 
