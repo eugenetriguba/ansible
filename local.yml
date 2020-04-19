@@ -5,9 +5,14 @@
     - name: update repositories
       apt: update_cahce=yes
       changed_when: False
+  roles:
+    - role: markosamuli.pyenv
+    - role: ansible-ohmyzsh
 
   tasks:
     - include: tasks/users.yml
     - include: tasks/cron.yml
+    - include: tasks/repos.yml
     - include: tasks/packages.yml
+    - include: tasks/dotfiles.yml
     - include: tasks/gnome.yml

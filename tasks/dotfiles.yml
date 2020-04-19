@@ -1,0 +1,49 @@
+- name: Create .dotfiles directory
+  file:
+    path: /home/eugene/.dotfiles
+    state: directory
+    owner: eugene
+    group: eugene
+    mode: 0600
+
+- name: Create Code with go/src directory
+  file:
+    path: /home/eugene/Code/go/src
+    state: directory
+    owner: eugene
+    group: eugene
+    mode: 0600
+    recurse: yes
+
+- name: Copy dotfiles in
+  copy:
+    src: files/{{ item.src }}
+    dest: /home/eugene/.dotfiles
+    owner: eugene
+    group: eugene
+    mode: 0600
+  loop:
+    - { src: .zshrc }
+    - { src: .gitconfig }
+    - { src: aliases.sh }
+    - { src: exports.sh }
+    - { src: pyenv.sh }
+
+- name: Copy .fonts in
+  copy:
+    src: files/.fonts
+    dest: /home/eugene/
+    owner: eugene
+    group: eugene
+    mode: 0600
+
+- name: link .dotfiles
+  file:
+    src: /home/eugene/.dotfiles/{{ item.name }}
+    dest: /home/eugene/{{ item.name }}
+    owner: eugene
+    group: eugene
+    state: link
+  loop:
+    - { name: .gitconfig }
+    - { name: .zshrc }

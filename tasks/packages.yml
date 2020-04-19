@@ -1,5 +1,6 @@
-- name: Install general packages
-  apt: name={{item}}
+- name: Install general development packages
+  apt:
+    name: "{{ item }}"
   with_items:
     - htop
     - vim
@@ -12,9 +13,13 @@
     - build-essential
     - npm
     - zsh
+    - golang-go
+    - fonts-powerline
+    - snapd
 
-- name: Install i3
-  apt: name={{item}}
+- name: Install i3 window manager
+  apt:
+    name: "{{ item }}"
   with_items:
     - i3
     - i3blocks
@@ -28,8 +33,9 @@
     - scrot
     - viewnior
 
-- name: Install pyenv deps
-  apt: name={{item}}
+- name: Install & Setup pyenv
+  apt:
+    name: "{{ item }}"
   with_items:
     - libssl-dev
     - zlib1g-dev
@@ -44,3 +50,20 @@
     - libffi-dev
     - liblzma-dev
     - python-openssl
+  pyenv_python_versions:
+    - "{{ pyenv_python37_version }}"
+    - "{{ pyenv_python38_version }}"
+  pyenv_global: "{{ pyenv_python38_version }} system"
+  pyenv_virtualenvwrapper: true
+  pyenv_virtualenvwrapper_home: "{{ ansible_env.HOME }}/.virtualenvs"
+  pyenv_detect_existing_install: true
+
+- name: Install python poetry only if ~/.poetry doesn't exist
+  shell: curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 >/dev/null 2>&1
+  args:
+    creates: /home/eugene/.poetry
+
+- name: Install vscode via snap
+  snap:
+    name: code
+    classic: yes

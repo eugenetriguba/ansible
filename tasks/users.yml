@@ -1,22 +1,24 @@
 - name: create ansible user
-  user: name=ansible uid=900
+  user:
+    name: ansible
+    uid: 900
 
 - name: copy sudoers_ansible
-  copy: src=files/sudoers_ansible dest=/etc/sudoers.d/ansible owner=root group=root mode=0440
+  copy:
+    src: files/sudoers_ansible
+    dest: /etc/sudoers.d/ansible
+    owner: root
+    group: root
+    mode: 0440
 
-- name: Create .dotfiles directory
-  file:
-    path: /home/eugene/.dotfiles
-    state: directory
-    owner: eugene
-    group: eugene
-    mode: 0600
+- name: Create a 4096-bit SSH key for user eugene in ~/.ssh/id_rsa
+  user:
+    name: eugene
+    generate_ssh_key: yes
+    ssh_key_bits: 4096
+    ssh_key_file: ~/.ssh/id_rsa
 
-- name: Create Code with go/src directory
-  file:
-    path: /home/eugene/Code/go/src
-    state: directory
-    owner: eugene
-    group: eugene
-    mode: 0600
-    recurse: yes
+- name: Change eugene's shell to zsh
+  user:
+    name: eugene
+    shell: /bin/zsh

@@ -1,0 +1,4 @@
+- name: Add golang repo
+  apt_repository:
+    repo: ppa:longsleep/golang-backports
+    state: present
