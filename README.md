@@ -1,7 +1,5 @@
 # Dotfiles
 
-![Preview](/preview.png)
-
 Personal dotfiles to get me up and running on various operating systems.
 These dotfiles use [Ansible](https://docs.ansible.com).
 
