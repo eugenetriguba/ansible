@@ -1,4 +1,4 @@
-export ZSH="$HOME/.dotfiles/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="agnoster"
 DISABLE_UPDATE_PROMPT="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
