@@ -1,0 +1,20 @@
+- name: Install python-psutil package
+  apt: name=python-psutil
+
+- name: Copy wallpaper file
+  copy: src=files/wallpaper.jpg dest=/home/eugene/.wallpaper.jpg owner=eugene group=eugene mode=600
+
+- name: Set GNOME Wallpaper
+  become_user: eugene
+  dconf: key="/org/gnome/desktop/background/picture-uri" value="'file:///home/eugene/.wallpaper.jpg'"
+
+- name: Set lock screen background
+  become_user: eugene
+  dconf: key="/org/gnome/desktop/screensaver/picture-uri" value="'file:///home/eugene/.wallpaper.jpg'"
+
+- name: Install arc theme
+  apt: name=arc-theme
+
+- name: Set GTK Theme
+  become_user: eugene
+  dconf: key="/org/gnome/desktop/interface/gtk-theme" value="'Arc'"

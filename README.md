@@ -3,15 +3,13 @@
 ![Preview](/preview.png)
 
 Personal dotfiles to get me up and running on various operating systems.
+These dotfiles use [Ansible](https://docs.ansible.com).
 
-## Getting Started
+## Usage
 
-Install the dotfiles.
 ```bash
-$ python bootstrap.py
+$ sudo ansible-pull -U https://github.com/eugenetriguba/dotfiles.git
 ```
 
-Uninstall
-```bash
-$ ./bootstrap.py --uninstall
-```
+An ansible user will be setup after you do your first manual pull to 
+run a cron job that automatically keeps your desktop in sync with the repo.

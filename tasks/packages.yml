@@ -1,0 +1,46 @@
+- name: Install general packages
+  apt: name={{item}}
+  with_items:
+    - htop
+    - vim
+    - neovim
+    - tmux
+    - curl
+    - wget
+    - git
+    - unzip
+    - build-essential
+    - npm
+    - zsh
+
+- name: Install i3
+  apt: name={{item}}
+  with_items:
+    - i3
+    - i3blocks
+    - compton
+    - hsetroot
+    - rxvt-unicode
+    - xsel
+    - rofi
+    - xsettingsd
+    - lxappearance
+    - scrot
+    - viewnior
+
+- name: Install pyenv deps
+  apt: name={{item}}
+  with_items:
+    - libssl-dev
+    - zlib1g-dev
+    - libbz2-dev
+    - libreadline-dev
+    - libsqlite3-dev
+    - llvm
+    - libncurses5-dev
+    - libncursesw5-dev
+    - xz-utils
+    - tk-dev
+    - libffi-dev
+    - liblzma-dev
+    - python-openssl

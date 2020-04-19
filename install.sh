@@ -11,65 +11,12 @@
 # disabled because of oh my zsh shell script
 # oh-my-zsh.sh: line 3: ZSH_CACHE_DIR: unbound variable 
 
-source base.sh
-source helpers.sh
-
-msg_run "Updating software with apt and getting add-apt-repository.."
-run_apt update
-run_apt upgrade
-run_apt autoremove
-run_apt install software-properties-common
+# This file is a WIP to convert to ansible
 
 
 # name to search for => ppa
 declare -A apt_repositories
 apt_repositories["golang"]="ppa:longsleep/golang-backports"
-
-# bin name to check => install name
-declare -A apt_packages
-apt_packages["vim"]="vim"
-apt_packages["nvim"]="neovim"
-apt_packages["curl"]="curl"
-apt_packages["wget"]="wget"
-apt_packages["git"]="git"
-apt_packages["unzip"]="unzip"
-apt_packages["make"]="build-essential"
-apt_packages["npm"]="npm"
-apt_packages["python3.8"]="python3.8"
-apt_packages["pip3"]="python3-pip"
-apt_packages["rst2man"]="python-docutils"
-apt_packages["zsh"]="zsh"
-apt_packages["go"]="golang-go"
-apt_packages["tmux"]="tmux"
-apt_packages["git"]="git"
-
-# i3
-apt_packages["i3"]="i3"
-apt_packages["i3blocks"]="i3blocks"
-apt_packages["compton"]="compton" 
-apt_packages["hsetroot"]="hsetroot" 
-apt_packages["rxvt-unicode"]="rxvt-unicode"
-apt_packages["xsel"]="xsel"
-apt_packages["rofi"]="rofi"
-apt_packages["xsettingsd"]="xsettingsd"
-apt_packages["lxappearance"]="lxappearance"
-apt_packages["scrot"]="scrot"
-apt_packages["viewnior"]="viewnior"
-
-# Pyenv deps
-apt_packages["libssl-dev"]="libssl-dev"
-apt_packages["zlib1g-dev"]="zlib1g-dev"
-apt_packages["libbz2-dev"]="libbz2-dev"
-apt_packages["libreadline-dev"]="libreadline-dev"
-apt_packages["libsqlite3-dev"]="libsqlite3-dev"
-apt_packages["llvm"]="llvm"
-apt_packages["libncurses5-dev"]="libncurses5-dev"
-apt_packages["libncursesw5-dev"]="libncursesw5-dev"
-apt_packages["xz-utils"]="xz-utils"
-apt_packages["tk-dev"]="tk-dev"
-apt_packages["libffi-dev"]="libffi-dev"
-apt_packages["liblzma-dev"]="liblzma-dev"
-apt_packages["python-openssl"]="python-openssl"
 
 # font name to search => install name
 declare -A apt_fonts
