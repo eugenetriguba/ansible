@@ -5,5 +5,5 @@ Personal [ansible](https://docs.ansible.com) setup to get me up and running on L
 ## Usage
 
 ```bash
-$ sudo ansible-pull -U https://github.com/eugenetriguba/dotfiles.git
+$ sudo ansible-pull -U https://github.com/eugenetriguba/ansible.git
 ```
