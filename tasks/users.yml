@@ -3,3 +3,20 @@
 
 - name: copy sudoers_ansible
   copy: src=files/sudoers_ansible dest=/etc/sudoers.d/ansible owner=root group=root mode=0440
+
+- name: Create .dotfiles directory
+  file:
+    path: /home/eugene/.dotfiles
+    state: directory
+    owner: eugene
+    group: eugene
+    mode: 0600
+
+- name: Create Code with go/src directory
+  file:
+    path: /home/eugene/Code/go/src
+    state: directory
+    owner: eugene
+    group: eugene
+    mode: 0600
+    recurse: yes
