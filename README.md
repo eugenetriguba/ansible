@@ -6,7 +6,6 @@ Personal [ansible](https://docs.ansible.com) setup to get me up and running on L
 
 First, install ansible.
 ```bash
-$ sudo apt-add-repository --yes --update ppa:ansible/ansible
 $ sudo apt install ansible
 ```
 
